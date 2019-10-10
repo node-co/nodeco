@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,6 +16,7 @@
     "express": "^4.17.1",
     "express-method-override": "0.0.3",
     "mongoose": "^5.7.4",
+    "nodemon": "^1.19.3",
     "pdfkit": "^0.10.0",
     "pug": "^2.0.4"
   }

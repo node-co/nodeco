@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const port = 3000;
 //const mongoose = require("mongoose");
 const viewDir = `${__dirname}/views`;
+app.use(express.static(`${__dirname}/public`));
 app.set("views", viewDir);
 app.set("view engine", "pug");
 app.use(compression());
