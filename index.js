@@ -18,6 +18,33 @@ app.get("/", async (req, res) => {
   res.render("pages/home", { variable: "hola soy una variable" });
 });
 
+app.get("/bootcamp-2019", async (req, res) => {
+  const { query } = req;
+  res.render("pages/bootcamp-2019", { query });
+});
+
+app.get("/certificados/:id", async (req, res) => {
+  const certificadoId = req.params.id;
+  const uuidV4 = require("uuid/v4");
+  const PDFDocument = require("pdfkit");
+  const path = require("path");
+  const appDir = path.dirname(require.main.filename);
+  let options = { size: "letter", layout: "landscape", margin: 5 };
+  const doc = new PDFDocument(options);
+  let filename = uuidV4();
+  filename = encodeURIComponent(filename) + ".pdf";
+  res.setHeader(
+    "Content-disposition",
+    'attachment; filename="' + filename + '"'
+  );
+  res.setHeader("Content-type", "application/pdf");
+  doc.fontSize(13);
+  doc.font("Helvetica");
+  doc.text(`El id es ${certificadoId}`, 320, 55);
+  doc.pipe(res);
+  doc.end();
+});
+
 app.listen(port, () => {
-  console.log(`API REST corriendo en http://localhost:${port}`);
+  console.log(`app corriendo en http://localhost:${port}`);
 });
